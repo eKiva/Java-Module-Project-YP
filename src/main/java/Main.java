@@ -8,7 +8,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         Race f1 = new Race();
-        ArrayList<Car> StartingProtocol = new ArrayList<>();
+        ArrayList<Car> startingProtocol = new ArrayList<>();
 
         //Добавим машины в стартовый протокол. Будем считать, что в гонке могут участвовать только три машины
         for (byte i = 1; i <= 3; i++) {
@@ -17,20 +17,31 @@ public class Main {
 
             while (true) {
                 System.out.println("Введите скорость машины №" + i + ":");
-                short carSpeed = (short) scanner.nextInt();
-                if (carSpeed > 0 && carSpeed <=250){
-                    Car car = new Car(carName, carSpeed);
-                    StartingProtocol.add(car);
+
+                String stnigSpeed = scanner.next();
+                int intSpeed;
+                try
+                {
+                    intSpeed = Integer.parseInt(stnigSpeed.trim());
+                }
+                catch (NumberFormatException nfe)
+                {
+                    System.out.println("Скорость указана некорретно! Введите целое числовое значение!");
+                    continue;
+                }
+                if (intSpeed > 0 && intSpeed <= 250){
+                    Car car = new Car(carName, intSpeed);
+                    startingProtocol.add(car);
                     break;
                 } else {
-                    System.out.println("Скорость некорретная! Скорость машины должна быть от 0 до 250 км/час");
+                    System.out.println("Скорость машины должна быть от 1 до 250 км/час");
                 }
             }
         }
 
         //Проводим гонку
-        for (Car car : StartingProtocol) {
-            f1.UpdateLeader(car.name, car.speed);
+        for (Car car : startingProtocol) {
+            f1.updateLeader(car.name, car.speed);
         }
 
         //Выводим результаты гонки
