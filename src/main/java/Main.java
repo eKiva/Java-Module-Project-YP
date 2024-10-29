@@ -34,7 +34,7 @@ public class Main {
                     startingProtocol.add(car);
                     break;
                 } else {
-                    System.out.println("Скорость машины должна быть от 1 до 250 км/час");
+                    System.out.println("Скорость машины должна быть от 1 до 250 км/час!");
                 }
             }
         }
